@@ -1,0 +1,19 @@
+<div class="flex flex-col h-full overflow-hidden">
+  <div class="px-3 pt-3 pb-4 uppercase truncate text-textMedium text-13">
+    {{ IssueStatusDisplay[status] }}
+    <span class="lowercase text-13">{{ issuesCount }}</span>
+  </div>
+
+  <div class="relative flex-1 w-full">
+    <div
+      class="absolute top-0 bottom-0 left-0 right-0 p-2 overflow-y-auto"
+      cdkDropList
+      [cdkDropListData]="issues"
+      [id]="status"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <issue-card *ngFor="let issue of issues" [issue]="issue" cdkDrag [cdkDragData]="issue">
+      </issue-card>
+    </div>
+  </div>
+</div>

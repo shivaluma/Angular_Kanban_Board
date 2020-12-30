@@ -1,0 +1,44 @@
+<div [style.width.px]="sidebarWidth" class="sidebar">
+  <div class="sidebar-content">
+    <div class="flex px-2 py-3">
+      <j-avatar
+        avatarUrl="https://res.cloudinary.com/dvujyxh7e/image/upload/c_scale,w_256/v1593097745/angular-vietnam-transparent_iwfwxa.png"
+        [name]="'Project'"
+        [rounded]="false"
+        [size]="44"
+        title="Angular Vietnam"
+      >
+      </j-avatar>
+      <div class="pl-1">
+        <div class="font-medium text-white text-15">
+          Kanban
+        </div>
+        <div class="text-textLight text-13">Angular Project</div>
+      </div>
+    </div>
+    <div class="mt-6">
+      <div *ngFor="let link of sideBarLinks; let idx = index">
+        <a
+          *ngIf="link.url"
+          :is="link.to ? 'router-link' : 'div'"
+          [routerLink]="link.url"
+          routerLinkActive="active"
+          tag="a"
+          class="link allowed"
+        >
+          <svg-icon class="mr-4" [name]="link.icon" [size]="24"> </svg-icon>
+
+          <div class="pt-px text-xs">{{ link.name }}</div>
+        </a>
+        <div *ngIf="!link.url" class="link not-allowed">
+          <svg-icon class="mr-4" [name]="link.icon" [size]="24"> </svg-icon>
+
+          <div class="pt-px text-xs">{{ link.name }}</div>
+          <div class="not-implemented">
+            Not implemented
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
